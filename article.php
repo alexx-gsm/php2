@@ -12,7 +12,7 @@ if (null === $id || 0 == (int)$id) {
     die;
 }
 
-$article = (new \App\Models\News())::findOneById($id);
+$article = \App\Models\News::findOneById($id);
 
 if (false === $article) {
     $view->assign('error', 'Нет такой новости');

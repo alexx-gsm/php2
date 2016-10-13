@@ -2,7 +2,7 @@
 
 require __DIR__ . '/autoload.php';
 
-$articles = (new \App\Models\News())::findNLastItems(3);
+$articles = \App\Models\News::findAll();
 
 $view = new \App\View();
 $view->assign('articles', $articles);
