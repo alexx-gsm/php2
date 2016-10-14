@@ -15,7 +15,7 @@ abstract class AbstractModel
             [],
             static::class
         );
-        return !empty($data) ? $data : false;
+        return $data ?: false;
     }
 
     public static function findOneById(int $id)
@@ -24,8 +24,8 @@ abstract class AbstractModel
             'SELECT * FROM ' . static::$table . ' WHERE id=:id',
             [':id' => $id],
             static::class
-        )[0];
-        return !empty($data) ? $data : false;
+        );
+        return $data[0] ?? false;
     }
 
     public static function findNLastItems(int $count = 1)
@@ -36,6 +36,6 @@ abstract class AbstractModel
             [],
             static::class
         );
-        return !empty($data) ? $data : false;
+        return $data ?: false;
     }
 }

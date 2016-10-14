@@ -1,8 +1,15 @@
 <?php
 
-return [
-    'db_host' => 'localhost',
-    'db_name' => 'php2_1',
-    'db_user' => 'root',
-    'db_pass' => '',
-];
+namespace App\Config;
+
+class Config
+    extends \stdClass
+{
+    public $data;
+
+    public function __construct()
+    {
+        $this->data = include __DIR__ . '/../Config.php';
+    }
+
+}

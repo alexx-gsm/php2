@@ -2,17 +2,19 @@
 
 namespace App;
 
+use App\Config\Config;
+
 class Db
 {
     protected $dbh;
 
     public function __construct()
     {
-        $config = include __DIR__ . '/Config/config.php';
-        $host = $config['db_host'];
-        $db_name = $config['db_name'];
-        $dsn = 'mysql:host=' . $host . ';dbname=' . $db_name . ';';
-        $this->dbh = new \PDO($dsn, $config['db_user'], $config['db_pass']);
+        $config = new Config();
+        $host = $config->data['db']['host'];
+        $dbname = $config->data['db']['dbname'];
+        $dsn = 'mysql:host=' . $host . ';dbname=' . $dbname . ';';
+        $this->dbh = new \PDO($dsn, $config->data['db']['user'], $config->data['db']['pass']);
     }
 
     public function execute(string $query, $params = [])
