@@ -2,12 +2,20 @@
 
 namespace App\Config;
 
+use App\TSingleton;
+
+/**
+ * Class Config
+ * @package App\Config
+ *
+ */
 class Config
-    extends \stdClass
 {
+    use TSingleton;
+
     public $data;
 
-    public function __construct()
+    protected function __construct()
     {
         $this->data = include __DIR__ . '/../Config.php';
     }

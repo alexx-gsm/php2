@@ -5,7 +5,7 @@ namespace App;
 
 trait TSingleton
 {
-    static $instance;
+    static $instance = null;
 
     protected function __construct()
     {
@@ -15,8 +15,11 @@ trait TSingleton
     {
     }
 
-    public static function instance($class)
+    public static function getInstance()
     {
-
+        if (null === static::$instance) {
+            static::$instance = new static();
+        }
+        return static::$instance;
     }
 }
