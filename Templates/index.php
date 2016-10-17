@@ -10,7 +10,7 @@
 <body>
 <h1>Последние новости:</h1>
 <hr>
-<?php foreach ($articles as $article): ?>
+<?php foreach ($news as $article): ?>
 <h2><?php echo $article->title; ?></h2>
     <p><?php echo $article->lead; ?></p>
     <a href="/article.php?id=<?php echo $article->getId()?>">more</a>

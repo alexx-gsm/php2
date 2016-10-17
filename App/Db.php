@@ -32,4 +32,9 @@ class Db
 
         return (!empty($res)) ? $res : false;
     }
+
+    public function lastInsertId()
+    {
+        return $this->dbh->lastInsertId();
+    }
 }

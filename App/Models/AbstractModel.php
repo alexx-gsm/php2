@@ -38,4 +38,79 @@ abstract class AbstractModel
         );
         return $data ?: false;
     }
+
+    public function isNew()
+    {
+        return empty($this->id);
+    }
+
+    public function save()
+    {
+        if ($this->isNew()) {
+            $this->insert();
+        } else {
+            $this->update();
+        }
+    }
+
+    protected function insert()
+    {
+        $columns = [];
+        $binds = [];
+        $data = [];
+        foreach ($this as $column => $value) {
+            if ('id' == $column) {
+                continue;
+            }
+            $columns[] = $column;
+            $binds[] = ':' . $column;
+            $data[':' . $column] = $value;
+        }
+        $sql = '
+            INSERT INTO ' . static::$table . '
+            (' . implode(', ', $columns). ')
+            VALUES
+            (' . implode(', ', $binds). ')
+            ';
+        $db = new Db();
+        $db->execute($sql, $data);
+        $this->id = $db->lastInsertId();
+    }
+
+    protected function update()
+    {
+        $columns = [];
+        $binds = [];
+        $data = [];
+        foreach ($this as $column => $value) {
+            if ('id' == $column) {
+                continue;
+            }
+            $columns[] = $column;
+            $binds[] = ':' . $column;
+            $data[':' . $column] = $value;
+        }
+        $data[':id'] = $this->id;
+        $sql = '
+            INSERT INTO ' . static::$table . '
+            (' . implode(', ', $columns). ')
+            VALUES
+            (' . implode(', ', $binds). ')
+            WHERE id=:id
+            ';
+        $db = new Db();
+        $db->execute($sql, $data);
+    }
+
+    public function delete()
+    {
+        if (false === $this->isNew()) {
+            $sql = '
+            DELETE FROM ' . static::$table . '
+            WHERE id=:id
+            ';
+            $db = new Db();
+            $db->execute($sql, [':id' => $this->id]);
+        }
+    }
 }

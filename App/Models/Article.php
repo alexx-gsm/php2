@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class News extends AbstractModel
+class Article extends AbstractModel
 {
     public static $table = 'news';
 

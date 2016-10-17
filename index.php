@@ -2,11 +2,8 @@
 
 require __DIR__ . '/autoload.php';
 
-$db = new \App\Db();
-var_dump($db); die;
-
-$articles = \App\Models\News::findNLastItems(3);
+$news = \App\Models\Article::findNLastItems(3);
 
 $view = new \App\View();
-$view->assign('articles', $articles);
+$view->assign('news', $news);
 $view->display('index');
