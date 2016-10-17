@@ -10,7 +10,7 @@
 <body>
     <h1><?php echo $article->title; ?></h1>
     <hr>
-    <p><?php echo $article->lead; ?></p>
+    <p><?php echo $article->text; ?></p>
     <a href="/">Все новости</a>
     <hr>
 </body>

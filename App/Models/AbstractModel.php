@@ -79,25 +79,23 @@ abstract class AbstractModel
 
     protected function update()
     {
-        $columns = [];
         $binds = [];
         $data = [];
         foreach ($this as $column => $value) {
             if ('id' == $column) {
                 continue;
             }
-            $columns[] = $column;
-            $binds[] = ':' . $column;
+            $binds[] = $column . '=:' . $column;
             $data[':' . $column] = $value;
         }
         $data[':id'] = $this->id;
         $sql = '
-            INSERT INTO ' . static::$table . '
-            (' . implode(', ', $columns). ')
-            VALUES
-            (' . implode(', ', $binds). ')
+            UPDATE ' . static::$table . '
+            SET
+            ' . implode(', ', $binds). '
             WHERE id=:id
             ';
+//        var_dump($sql); var_dump($data); die;
         $db = new Db();
         $db->execute($sql, $data);
     }
