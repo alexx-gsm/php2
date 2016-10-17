@@ -6,7 +6,7 @@ class Article extends AbstractModel
 {
     public static $table = 'news';
 
-    protected $id;
+    public $id;
     public $title;
     public $lead;
     public $text;
@@ -23,5 +23,17 @@ class Article extends AbstractModel
     public function getId()
     {
         return $this->id;
+    }
+
+    public function fill(array $data = null) {
+        if (null === $data) {
+            return $this;
+        }
+
+        foreach ($data as $key => $value) {
+            $this->$key = $value;
+        }
+
+        return $this;
     }
 }

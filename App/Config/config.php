@@ -4,11 +4,6 @@ namespace App\Config;
 
 use App\TSingleton;
 
-/**
- * Class Config
- * @package App\Config
- *
- */
 class Config
 {
     use TSingleton;
