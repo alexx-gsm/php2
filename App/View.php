@@ -3,15 +3,13 @@
 namespace App;
 
 class View
+    implements \Iterator, \Countable
 {
-    protected $data = [];
+    use TMagic;
+    use TIterator;
 
     public function __construct()
     {
-    }
-
-    public function assign(string $name, $value) {
-        $this->data[$name] = $value;
     }
 
     public function display(string $template = 'index')
@@ -21,7 +19,7 @@ class View
 
     public function render(string $template = 'index')
     {
-        foreach ($this->data as $key => $val) {
+        foreach ($this as $key => $val) {
             $$key = $val;
         }
 
@@ -34,5 +32,19 @@ class View
         ob_end_clean();
 
         return $buffer;
+    }
+
+    /**
+     * Count elements of an object
+     * @link http://php.net/manual/en/countable.count.php
+     * @return int The custom count as an integer.
+     * </p>
+     * <p>
+     * The return value is cast to an integer.
+     * @since 5.1.0
+     */
+    public function count()
+    {
+        return count($this->__data);
     }
 }

@@ -13,6 +13,7 @@
 <?php foreach ($news as $article): ?>
 <h2><?php echo $article->title; ?></h2>
     <p><?php echo $article->lead; ?></p>
+    <p>автор: <?php echo $article->author->name; ?></p>
     <a href="/article.php?id=<?php echo $article->id; ?>">more</a>
 <?php endforeach; ?>
 <hr>

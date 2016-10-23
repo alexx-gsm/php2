@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Главная | PHP2-1</title>
+    <title>Главная | PHP2</title>
 </head>
 <body>
 <?php if ($article->isNew()): ?>
@@ -34,11 +34,26 @@
                 <td><textarea id="text" name="article[text]"><?php echo $article->text; ?></textarea></td>
             </tr>
             <tr>
+                <td><label for="authors">Автор:</label></td>
+                <td>
+                    <select name="article[author_id]" id="authors">
+                        <?php foreach ($authors as $author): ?>
+                            <option value="<?php echo $author->id; ?>"
+                                <?php if ($author->id == $article->author_id) {echo ' selected';} ?>
+                            >
+                                <?php echo $author->name; ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </td>
+            </tr>
+            <tr>
                 <td><input type="submit" value="Сохранить"></td>
+                <td><a href="/admin.php">Отмена</a></td>
             </tr>
             </tbody>
         </table>
-        <input type="hidden" name="article[id]" value="<?php echo $article->getId(); ?>">
+        <input type="hidden" name="article[id]" value="<?php echo $article->id; ?>">
     </form>
 </fieldset>
 </body>

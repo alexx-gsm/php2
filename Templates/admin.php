@@ -17,6 +17,7 @@
     <tr>
         <th width="10%">id</th>
         <th>Заголовок</th>
+        <th width="20%">Автор</th>
         <th width="20%">Инструменты</th>
     </tr>
     </thead>
@@ -25,6 +26,7 @@
     <tr>
         <td><?php echo $article->id; ?></td>
         <td><?php echo $article->title; ?></td>
+        <td><?php echo $article->author->name; ?></td>
         <td>
             <a href="/edit.php?id=<?php echo $article->id; ?>">Edit</a>
             <a href="/delete.php?id=<?php echo $article->id; ?>">Delete</a>

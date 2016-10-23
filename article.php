@@ -7,7 +7,7 @@ $id = $_GET['id'] ?? null;
 $view = new \App\View();
 
 if (null === $id || 0 == (int)$id) {
-    $view->assign('error', 'Неверный адрес новости');
+    $view->error = 'Неверный адрес новости';
     $view->display('404');
     die;
 }
@@ -15,10 +15,10 @@ if (null === $id || 0 == (int)$id) {
 $article = \App\Models\Article::findOneById($id);
 
 if (false === $article) {
-    $view->assign('error', 'Нет такой новости');
+    $view->error = 'Нет такой новости';
     $view->display('404');
     die;
 }
 
-$view->assign('article', $article);
+$view->article = $article;
 $view->display('article');

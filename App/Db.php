@@ -2,15 +2,14 @@
 
 namespace App;
 
-use App\Config\Config;
-
 class Db
 {
     protected $dbh;
 
     public function __construct()
     {
-        $config = Config::getInstance();
+        $config = Config::getInstance()->setConfig(__DIR__ . '/../Config.php');
+
         $host = $config->data['db']['host'];
         $dbname = $config->data['db']['dbname'];
         $dsn = 'mysql:host=' . $host . ';dbname=' . $dbname . ';';
