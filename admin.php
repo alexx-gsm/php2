@@ -6,4 +6,4 @@ $news = \App\Models\Article::findAll();
 
 $view = new \App\View();
 $view->news = $news;
-$view->display('admin');
+$view->display(__DIR__ . '/Templates/admin.php');

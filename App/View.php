@@ -12,12 +12,12 @@ class View
     {
     }
 
-    public function display(string $template = 'index')
+    public function display(string $pathTemplate)
     {
-        echo $this->render($template);
+        echo $this->render($pathTemplate);
     }
 
-    public function render(string $template = 'index')
+    public function render(string $pathTemplate)
     {
         foreach ($this as $key => $val) {
             $$key = $val;
@@ -25,7 +25,9 @@ class View
 
         ob_start();
 
-        include __DIR__ . '/../Templates/' . $template . '.php';
+        if (is_readable($pathTemplate)) {
+            include $pathTemplate;
+        }
 
         $buffer = ob_get_contents();
 

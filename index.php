@@ -6,4 +6,4 @@ $news = \App\Models\Article::findNLastItems(3);
 
 $view = new \App\View();
 $view->news = $news;
-$view->display('index');
+$view->display(__DIR__ . '/Templates/index.php');

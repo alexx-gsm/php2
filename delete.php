@@ -6,7 +6,7 @@ $id = $_GET['id'] ?? null;
 
 if (null === $id || 0 == (int)$id) {
     $view->error = 'Нет такой новости';
-    $view->display('404');
+    $view->display(__DIR__ . '/Templates/404.php');
     die;
 }
 
@@ -14,7 +14,7 @@ $article = \App\Models\Article::findOneById($id);
 
 if (empty($article)) {
     $view->error = 'Нет такой новости';
-    $view->display('404');
+    $view->display(__DIR__ . '/Templates/404.php');
     die;
 }
 

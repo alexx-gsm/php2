@@ -13,4 +13,4 @@ if (null !== $id && 0 != (int)$id) {
 $view = new \App\View();
 $view->article = $article;
 $view->authors = \App\Models\Author::findAll();
-$view->display('edit');
+$view->display(__DIR__ . '/Templates/edit.php');
