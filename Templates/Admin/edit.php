@@ -18,7 +18,7 @@
     <legend>
         Новость
     </legend>
-    <form action="/save.php" method="get">
+    <form action="/Admin/Save/" method="get">
         <table>
             <tbody>
             <tr>
@@ -49,7 +49,7 @@
             </tr>
             <tr>
                 <td><input type="submit" value="Сохранить"></td>
-                <td><a href="/admin.php">Отмена</a></td>
+                <td><a href="/Admin/">Отмена</a></td>
             </tr>
             </tbody>
         </table>

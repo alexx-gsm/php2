@@ -10,7 +10,7 @@
 <body>
 <h1>Все новости:</h1>
 <hr>
-<a href="/edit.php">Добавить новость</a>
+<a href="/Admin/Edit/">Добавить новость</a>
 <hr>
 <table>
     <thead>
@@ -28,8 +28,8 @@
         <td><?php echo $article->title; ?></td>
         <td><?php echo $article->author->name; ?></td>
         <td>
-            <a href="/edit.php?id=<?php echo $article->id; ?>">Edit</a>
-            <a href="/delete.php?id=<?php echo $article->id; ?>">Delete</a>
+            <a href="/Admin/Edit/?id=<?php echo $article->id; ?>">Edit</a>
+            <a href="/Admin/Delete/?id=<?php echo $article->id; ?>">Delete</a>
         </td>
     </tr>
     </tbody>

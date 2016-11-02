@@ -13,7 +13,8 @@ namespace App\Models;
  * @property int $author_id     // relation BELONG_TO \Author
  *
  */
-class Article extends AbstractModel
+class Article
+    extends AbstractModel
 {
     public static $table = 'news';
 
@@ -33,12 +34,16 @@ class Article extends AbstractModel
      */
     public function __get($name)
     {
-        if ($name == 'author') {
-            if (!empty($this->author_id)) {
-                return Author::findOneById($this->author_id);
-            } else {
-                return new Author();
-            }
+        if (isset($this->$name) && 'author' == $name) {
+            return Author::findOneById($this->author_id);
+        }
+        return false;
+    }
+
+    public function __isset($name)
+    {
+        if ('author' == $name && !empty($this->author_id)) {
+            return true;
         }
         return false;
     }

@@ -14,11 +14,11 @@
 <h2><?php echo $article->title; ?></h2>
     <p><?php echo $article->lead; ?></p>
     <p>автор: <?php echo $article->author->name; ?></p>
-    <a href="/article.php?id=<?php echo $article->id; ?>">more</a>
+    <a href="/Index/One/?id=<?php echo $article->id; ?>">more</a>
 <?php endforeach; ?>
 <hr>
 <footer>
-    <a href="/admin.php">Админка</a>
+    <a href="/Admin/">Админка</a>
 </footer>
 </body>
 </html>
