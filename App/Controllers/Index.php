@@ -28,7 +28,7 @@ class Index
             die;
         }
 
-        $article = \App\Models\Article::findOneById($id);
+        $article = Article::findOneById($id);
         if (false === $article) {
             $this->view->error = 'Нет такой новости';
             $this->view->display(__DIR__ . '/../../Templates/404.php');

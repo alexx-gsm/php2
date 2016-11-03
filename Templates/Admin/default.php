@@ -10,7 +10,7 @@
 <body>
 <h1>Все новости:</h1>
 <hr>
-<a href="/Admin/Edit/">Добавить новость</a>
+<a href="/Admin/Edit/?new">Добавить новость</a>
 <hr>
 <table>
     <thead>
