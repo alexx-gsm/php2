@@ -16,18 +16,24 @@ class Route
     {
         $positionParams = strpos($request, '?');
         if (false !== $positionParams) {
-            $request = substr($request, 0, $positionParams - 1);
+            $request = substr($request, 0, $positionParams);
         }
         $request = explode('/', $request);
+        $path = [];
+        foreach ($request as $value) {
+            if (!empty($value)) {
+                $path[] = $value;
+            }
+        }
         $ctrlClassName = 'App\Controllers\\';
         $this->action = 'action';
-        for ($i=1; $i<count($request)-2; $i++) {
-            $ctrlClassName .= $request[$i] ? ucfirst($request[$i]): 'Index';
+        for ($i=0; $i<count($path)-2; $i++) {
+            $ctrlClassName .= $path[$i] ? ucfirst($path[$i]): 'Index';
             $ctrlClassName .= '\\';
         }
-        $ctrlClassName .= isset($request[$i]) && !empty($request[$i]) ? ucfirst($request[$i]) : 'Index';
+        $ctrlClassName .= isset($path[$i]) && !empty($path[$i]) ? ucfirst($path[$i]) : 'Index';
         $this->controller = new $ctrlClassName;
-        $this->action .= isset($request[$i+1]) && !empty($request[$i+1]) ? ucfirst($request[$i+1]) : 'Default';
+        $this->action .= isset($path[$i+1]) && !empty($path[$i+1]) ? ucfirst($path[$i+1]) : 'Default';
     }
 
     public function run()
