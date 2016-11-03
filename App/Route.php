@@ -14,8 +14,11 @@ class Route
 
     public function parseRequest($request)
     {
-        $path = explode('/?', $request)[0] or explode('?', $request)[0];
-        $request = false != $path ? explode('/', $path) : $request;
+        $positionParams = strpos($request, '?');
+        if (false !== $positionParams) {
+            $request = substr($request, 0, $positionParams - 1);
+        }
+        $request = explode('/', $request);
         $ctrlClassName = 'App\Controllers\\';
         $this->action = 'action';
         for ($i=1; $i<count($request)-2; $i++) {
