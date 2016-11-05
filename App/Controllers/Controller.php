@@ -17,7 +17,7 @@ abstract class Controller
     {
         if (false === $this->access()) {
             $this->view->error = 'Доступ закрыт';
-            $this->view->display(__DIR__ . '/../../Templates/404.php');
+            $this->view->display(__DIR__ . '/../../Templates/403.php');
             die;
         }
         $this->$action();
