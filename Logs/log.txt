@@ -1,3 +1,5 @@
 2016-11-06 10:23:59; Error: Database connection failed; D:\OpenServer\domains\PHP\PHP2\App\Db.php; 21
 2016-11-06 10:25:17; E403: Доступ запрещен; D:\OpenServer\domains\PHP\PHP2\App\Controllers\Controller.php; 20
 2016-11-06 10:25:47; E403: Доступ запрещен; D:\OpenServer\domains\PHP\PHP2\App\Controllers\Controller.php; 20
+2016-11-06 10:30:28; E403: Доступ запрещен; D:\OpenServer\domains\PHP\PHP2\App\Controllers\Controller.php; 20
+2016-11-06 10:30:57; E404: Нет такой новости; D:\OpenServer\domains\PHP\PHP2\App\Controllers\Index.php; 36

@@ -10,7 +10,7 @@ class Index
 {
     public function access():bool
     {
-        return false;
+        return true;
     }
 
     public function actionDefault()
