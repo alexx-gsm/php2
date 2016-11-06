@@ -6,9 +6,9 @@ use App\Components\DbException;
 use App\Components\E403Exception;
 use App\Components\E404Exception;
 use App\Components\Logger;
-use App\Components\MultiException;
 use App\Controllers\Error;
 use Exception;
+use ME\MultiException;
 use Throwable;
 
 class Route
