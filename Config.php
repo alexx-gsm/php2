@@ -3,7 +3,7 @@
 return [
     'db' => [
         'host' => 'localhost',
-        'dbname' => 'php22',
+        'dbname' => 'php2',
         'user' => 'root',
         'pass' => '',
     ],
