@@ -75,13 +75,13 @@ class Route
     public function logError(Exception $exception)
     {
         Logger::getInstance()
-            ->setConfig(__DIR__ . '/../Config.php')
+            ->setConfig(__DIR__ . '/../config.php')
             ->writeLog($exception);
     }
 
     public function sendEmail(Exception $e)
     {
-        $config = Config::getInstance()->setConfig(__DIR__ . '/../Config.php');
+        $config = Config::getInstance()->setConfig(__DIR__ . '/../config.php');
         $emailTo = $config->data['mail']['admin'];
         $emailFrom = $config->data['mail']['site'];
 

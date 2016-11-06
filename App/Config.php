@@ -13,7 +13,7 @@ class Config
     {
     }
 
-    public function setConfig(string $path = __DIR__ . '/../Config.php')
+    public function setConfig(string $path = __DIR__ . '/../config.php')
     {
         if (is_readable($path)) {
             $this->data = include $path;

@@ -10,7 +10,7 @@ class Db
 
     public function __construct()
     {
-        $config = Config::getInstance()->setConfig(__DIR__ . '/../Config.php');
+        $config = Config::getInstance()->setConfig(__DIR__ . '/../config.php');
 
         $host = $config->data['db']['host'];
         $dbname = $config->data['db']['dbname'];
