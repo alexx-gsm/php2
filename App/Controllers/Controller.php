@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Components\E403Exception;
 use App\View;
 
 abstract class Controller
@@ -13,13 +14,12 @@ abstract class Controller
         $this->view = new View();
     }
 
-    public function action($action)
+    public function action($action, $message = '')
     {
-        if (false === $this->access()) {
-            $this->view->error = 'Доступ закрыт';
-            $this->view->display(__DIR__ . '/../../Templates/403.php');
-            die;
+        if (method_exists($this, 'access') && false === $this->access()) {
+            throw new E403Exception('E403: Доступ запрещен');
         }
-        $this->$action();
+        $this->$action($message);
     }
+
 }

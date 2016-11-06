@@ -2,6 +2,14 @@
 
 namespace App;
 
+use App\Components\DbException;
+use App\Components\E403Exception;
+use App\Components\E404Exception;
+use App\Components\Logger;
+use App\Components\MultiException;
+use App\Controllers\Error;
+use Exception;
+use Throwable;
 
 class Route
 {
@@ -38,6 +46,33 @@ class Route
 
     public function run()
     {
-        $this->controller->action($this->action);
+        try {
+             $this->controller->action($this->action);
+        } catch (DbException $e) {
+            $this->logError($e);
+            (new Error())->action('actionDefault', $e->getMessage());
+        } catch (MultiException $e) {
+            foreach ($e as $error) {
+                echo $error->getMessage();
+            }
+        } catch (E403Exception $e) {
+            $this->logError($e);
+            (new Error())->action('actionE403', $e->getMessage());
+        } catch (E404Exception $e) {
+            $this->logError($e);
+            (new Error())->action('actionE404', $e->getMessage());
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        } catch (Throwable $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function logError(Exception $exception)
+    {
+        Logger::getInstance()
+            ->setConfig(__DIR__ . '/../Config.php')
+            ->writeLog($exception);
+
     }
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="shortcut icon" type="image/x-icon" href="/../assets/favicon.ico" />
-    <title>404 | PHP2</title>
+    <title>403 | PHP2</title>
 </head>
 <body>
 

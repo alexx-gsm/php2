@@ -6,6 +6,10 @@ return [
         'dbname' => 'php2',
         'user' => 'root',
         'pass' => '',
+    ],
+
+    'logger' => [
+        'path' => 'Logs/log.txt'
     ]
 
 ];

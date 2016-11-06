@@ -4,7 +4,7 @@ namespace App;
 
 trait TMagic
 {
-    protected $__data;
+    protected $__data = [];
 
     public function __set($name, $value)
     {

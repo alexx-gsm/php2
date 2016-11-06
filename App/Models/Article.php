@@ -18,11 +18,11 @@ class Article
 {
     public static $table = 'news';
 
-    public $id;
-    public $title;
-    public $lead;
-    public $text;
-    public $author_id;
+    protected $id;
+    protected $title;
+    protected $lead;
+    protected $text;
+    protected $author_id;
 
     public function __construct()
     {
@@ -37,6 +37,9 @@ class Article
         if (isset($this->$name) && 'author' == $name) {
             return Author::findOneById($this->author_id);
         }
+        if (isset($this->$name)) {
+            return $this->$name;
+        }
         return false;
     }
 
@@ -45,28 +48,19 @@ class Article
         if ('author' == $name && !empty($this->author_id)) {
             return true;
         }
+        if (isset($this->$name)) {
+            return true;
+        }
         return false;
     }
 
-    public function setId(int $id)
+    public function __set($name, $value)
     {
-        $this->id = $id;
-    }
-
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function fill(array $data = null) {
-        if (null === $data) {
-            return $this;
+        if (isset($this->$name)) {
+            $this->$name = $value;
+        } else {
+            throw new \Exception('не найдено свойство ' . $name);
         }
-
-        foreach ($data as $key => $value) {
-            $this->$key = $value;
-        }
-
-        return $this;
     }
+
 }

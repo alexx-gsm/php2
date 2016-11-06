@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Components\MultiException;
 use App\Db;
 
 abstract class AbstractModel
@@ -110,5 +111,28 @@ abstract class AbstractModel
             $db = new Db();
             $db->execute($sql, [':id' => $this->id]);
         }
+    }
+
+    public function fill(array $data = null) {
+        if (null === $data) {
+            return $this;
+        }
+
+        $errors = new MultiException();
+
+        foreach ($data as $key => $value) {
+            try {
+                $this->$key = $value;
+            } catch (\Exception $e) {
+                $errors->add($e);
+            }
+
+        }
+
+        if (count($errors) > 0) {
+            throw $errors;
+        }
+
+        return $this;
     }
 }

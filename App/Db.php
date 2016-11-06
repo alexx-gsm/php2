@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Components\DbException;
+
 class Db
 {
     protected $dbh;
@@ -13,7 +15,12 @@ class Db
         $host = $config->data['db']['host'];
         $dbname = $config->data['db']['dbname'];
         $dsn = 'mysql:host=' . $host . ';dbname=' . $dbname . ';';
-        $this->dbh = new \PDO($dsn, $config->data['db']['user'], $config->data['db']['pass']);
+        try {
+            $this->dbh = new \PDO($dsn, $config->data['db']['user'], $config->data['db']['pass']);
+        } catch (\PDOException $error) {
+            throw new DbException('Error: Database connection failed');
+        }
+
     }
 
     public function execute(string $query, $params = [])

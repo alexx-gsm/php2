@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Components\E404Exception;
 use App\Models\Article;
 
 class Index
@@ -9,12 +10,16 @@ class Index
 {
     public function access():bool
     {
-        return true;
+        return false;
     }
 
     public function actionDefault()
     {
         $news = Article::findAll();
+        if (false === $news) {
+            throw new E404Exception('Нет новостей');
+        }
+
         $this->view->news = $news;
         $this->view->display(__DIR__ . '/../../Templates/Index/default.php');
     }
@@ -23,16 +28,12 @@ class Index
     {
         $id = $_GET['id'] ?? null;
         if (null === $id || 0 == (int)$id) {
-            $this->view->error = 'Неверный адрес новости';
-            $this->view->display(__DIR__ . '/../../Templates/404.php');
-            die;
+            throw new E404Exception('E404: Нет такой новости');
         }
 
         $article = Article::findOneById($id);
         if (false === $article) {
-            $this->view->error = 'Нет такой новости';
-            $this->view->display(__DIR__ . '/../../Templates/404.php');
-            die;
+            throw new E404Exception('E404: Нет такой новости');
         }
 
         $this->view->article = $article;
