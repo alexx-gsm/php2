@@ -8,43 +8,24 @@ class View
     use TMagic;
     use TIterator;
 
+    protected $twig;
+
     public function __construct()
     {
+        $loader = new \Twig_Loader_Filesystem(__DIR__ . '/../Templates');
+        $this->twig = new \Twig_Environment($loader);
     }
 
-    public function display(string $pathTemplate)
+    public function display(string $template)
     {
-        echo $this->render($pathTemplate);
+        echo $this->render($template);
     }
 
-    public function render(string $pathTemplate)
+    public function render(string $template)
     {
-        foreach ($this as $key => $val) {
-            $$key = $val;
-        }
-
-        ob_start();
-
-        if (is_readable($pathTemplate)) {
-            include $pathTemplate;
-        }
-
-        $buffer = ob_get_contents();
-
-        ob_end_clean();
-
-        return $buffer;
+        return $this->twig->render($template, $this->__data);
     }
 
-    /**
-     * Count elements of an object
-     * @link http://php.net/manual/en/countable.count.php
-     * @return int The custom count as an integer.
-     * </p>
-     * <p>
-     * The return value is cast to an integer.
-     * @since 5.1.0
-     */
     public function count()
     {
         return count($this->__data);

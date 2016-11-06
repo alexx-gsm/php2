@@ -1,0 +1,6 @@
+{
+    "require": {
+        "twig/twig": "v1.27.0",
+        "alexx-gsm/multiexception": "dev-master"
+    }
+}

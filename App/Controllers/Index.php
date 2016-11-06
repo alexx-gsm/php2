@@ -21,7 +21,7 @@ class Index
         }
 
         $this->view->news = $news;
-        $this->view->display(__DIR__ . '/../../Templates/Index/default.php');
+        $this->view->display('/Index/default.twig');
     }
 
     public function actionOne()
@@ -37,6 +37,6 @@ class Index
         }
 
         $this->view->article = $article;
-        $this->view->display(__DIR__ . '/../../Templates/Index/one.php');
+        $this->view->display('/Index/one.twig');
     }
 }

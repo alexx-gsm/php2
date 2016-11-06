@@ -4,10 +4,16 @@ namespace App\Controllers;
 
 use App\Models\Article;
 use App\Models\Author;
+use App\ViewAdmin;
 
 class Admin
     extends Controller
 {
+    public function __construct()
+    {
+        $this->view = new ViewAdmin();
+    }
+
     public function access():bool
     {
         return true;

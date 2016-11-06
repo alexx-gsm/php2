@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use App\Components\MultiException;
 use App\Db;
+use ME\MultiException;
+
 
 abstract class AbstractModel
 {

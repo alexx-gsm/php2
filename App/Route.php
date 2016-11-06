@@ -73,6 +73,5 @@ class Route
         Logger::getInstance()
             ->setConfig(__DIR__ . '/../Config.php')
             ->writeLog($exception);
-
     }
 }
