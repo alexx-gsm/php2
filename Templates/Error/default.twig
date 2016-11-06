@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<h1><?php echo $error; ?></h1>
+<h1>{{ error | default('Ошибка соединения с БД') }}</h1>
 <hr>
 
 <a href="/" class="btn btn-default">Главная</a>

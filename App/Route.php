@@ -9,6 +9,9 @@ use App\Components\Logger;
 use App\Controllers\Error;
 use Exception;
 use ME\MultiException;
+use Swift_Mailer;
+use Swift_MailTransport;
+use Swift_Message;
 use Throwable;
 
 class Route
@@ -50,6 +53,7 @@ class Route
              $this->controller->action($this->action);
         } catch (DbException $e) {
             $this->logError($e);
+            $this->sendEmail($e);
             (new Error())->action('actionDefault', $e->getMessage());
         } catch (MultiException $e) {
             foreach ($e as $error) {
@@ -73,5 +77,26 @@ class Route
         Logger::getInstance()
             ->setConfig(__DIR__ . '/../Config.php')
             ->writeLog($exception);
+    }
+
+    public function sendEmail(Exception $e)
+    {
+        $config = Config::getInstance()->setConfig(__DIR__ . '/../Config.php');
+        $emailTo = $config->data['mail']['admin'];
+        $emailFrom = $config->data['mail']['site'];
+
+        $transport = Swift_MailTransport::newInstance();
+        $mailer = Swift_Mailer::newInstance($transport);
+        $message = Swift_Message::newInstance('DB Error')
+            ->setFrom([$emailFrom])
+            ->setTo([$emailTo])
+            ->setBody(implode([
+                date('Y-m-d H:i:s'),
+                $e->getMessage(),
+                $e->getFile(),
+                $e->getLine()
+            ], '; '));
+
+        $mailer->send($message);
     }
 }

@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<h1><?php echo $error ?? 'Страницы не существует или доступ запрещен'; ?></h1>
+<h1>{{ error | default('Доступ запрещен') }}</h1>
 <hr>
 
 <a href="/" class="btn btn-default">Главная</a>

@@ -1,0 +1,12 @@
+To: admin@mail.ru
+Subject: DB Error
+X-PHP-Originating-Script: 0:SimpleMailInvoker.php
+Message-ID: <002eb63a60672455e7513c7f47878b35@php2.local>
+Date: Sun, 06 Nov 2016 17:48:57 +0300
+From: site@php2.local
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+2016-11-06 17:48:57; Error: Database connection failed; D:\OpenServer\domai=
+ns\PHP\PHP2\App\Db.php; 21

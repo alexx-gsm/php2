@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<h1><?php echo $error; ?></h1>
+<h1>{{ error | default('Ресурс не найден') }}</h1>
 <hr>
 
 <a href="/" class="btn btn-default">Главная</a>
