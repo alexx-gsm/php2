@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Components\AdminDataTable;
 use App\Models\Article;
 use App\Models\Author;
 use App\ViewAdmin;
@@ -22,8 +23,16 @@ class Admin
     public function actionDefault()
     {
         $news = Article::findAll();
+        var_dump($news); die;
         $this->view->news = $news;
         $this->view->display(__DIR__ . '/../../Templates/Admin/default.php');
+
+//        $adminTable = new AdminDataTable(
+//
+//                Article::findAll(),
+//
+//            []
+//        );
     }
 
     public function actionEdit()
