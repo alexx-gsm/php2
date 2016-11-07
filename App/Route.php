@@ -2,18 +2,6 @@
 
 namespace App;
 
-use App\Components\DbException;
-use App\Components\E403Exception;
-use App\Components\E404Exception;
-use App\Components\Logger;
-use App\Controllers\Error;
-use Exception;
-use ME\MultiException;
-use Swift_Mailer;
-use Swift_MailTransport;
-use Swift_Message;
-use Throwable;
-
 class Route
 {
     protected $controller;
@@ -49,54 +37,6 @@ class Route
 
     public function run()
     {
-        try {
-             $this->controller->action($this->action);
-        } catch (DbException $e) {
-            $this->logError($e);
-            $this->sendEmail($e);
-            (new Error())->action('actionDefault', $e->getMessage());
-        } catch (MultiException $e) {
-            foreach ($e as $error) {
-                echo $error->getMessage();
-            }
-        } catch (E403Exception $e) {
-            $this->logError($e);
-            (new Error())->action('actionE403', $e->getMessage());
-        } catch (E404Exception $e) {
-            $this->logError($e);
-            (new Error())->action('actionE404', $e->getMessage());
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        } catch (Throwable $e) {
-            echo $e->getMessage();
-        }
-    }
-
-    public function logError(Exception $exception)
-    {
-        Logger::getInstance()
-            ->setConfig(__DIR__ . '/../config.php')
-            ->writeLog($exception);
-    }
-
-    public function sendEmail(Exception $e)
-    {
-        $config = Config::getInstance()->setConfig(__DIR__ . '/../config.php');
-        $emailTo = $config->data['mail']['admin'];
-        $emailFrom = $config->data['mail']['site'];
-
-        $transport = Swift_MailTransport::newInstance();
-        $mailer = Swift_Mailer::newInstance($transport);
-        $message = Swift_Message::newInstance('DB Error')
-            ->setFrom([$emailFrom])
-            ->setTo([$emailTo])
-            ->setBody(implode([
-                date('Y-m-d H:i:s'),
-                $e->getMessage(),
-                $e->getFile(),
-                $e->getLine()
-            ], '; '));
-
-        $mailer->send($message);
+        $this->controller->action($this->action);
     }
 }
