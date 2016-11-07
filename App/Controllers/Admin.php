@@ -38,12 +38,20 @@ class Admin
                     return $article->lead;
                 },
                 function(Article $article) {
+                    return $article->text;
+                },
+                function(Article $article) {
                     return $article->author->name;
+                },
+                function(Article $article) {
+                    return $article->author->email;
                 },
             ]))->render();
         }
 
         $this->view->table = $adminTable ?? [];
+        $this->view->tableHeader = Article::attributeLabels();
+
         $this->view->display(__DIR__ . '/../../Templates/Admin/table.php');
 
     }

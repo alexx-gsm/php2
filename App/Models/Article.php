@@ -28,10 +28,18 @@ class Article
     {
     }
 
-    /**
-     * @param $name
-     * @return Author|bool
-     */
+    public static function attributeLabels()
+    {
+        return [
+            'id'        => 'Номер',
+            'title'     => 'Заголовок',
+            'lead'      => 'Вводная',
+            'text'      => 'Текст',
+            'userName'  => 'Имя пользователя',
+            'userEmail' => 'Почта пользователя',
+        ];
+    }
+
     public function __get($name)
     {
         if (isset($this->$name) && 'author' == $name) {

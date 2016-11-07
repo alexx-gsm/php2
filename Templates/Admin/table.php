@@ -15,10 +15,10 @@
 <table>
     <thead>
     <tr>
-<!--        <th width="10%">id</th>-->
-<!--        <th>Заголовок</th>-->
-<!--        <th width="20%">Автор</th>-->
-<!--        <th width="20%">Инструменты</th>-->
+        <?php foreach ($tableHeader as $headerCell): ?>
+            <th><?php echo $headerCell; ?></th>
+        <?php endforeach; ?>
+        <th width="20%">Инструменты</th>
     </tr>
     </thead>
     <tbody>
@@ -29,7 +29,7 @@
         <?php endforeach; ?>
         <td>
             <a href="/Admin/Edit/?id=<?php echo $row[0]; ?>">Edit</a>
-            <a href="/Admin/Delete/?id=<?php echo $article->id; ?>">Delete</a>
+            <a href="/Admin/Delete/?id=<?php echo $row[0]; ?>">Delete</a>
         </td>
     </tr>
     </tbody>
