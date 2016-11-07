@@ -39,6 +39,17 @@ class Db
         return (!empty($res)) ? $res : false;
     }
 
+    public function queryEach(string $query, array $params = [], $class = \stdClass::class)
+    {
+        $sth = $this->dbh->prepare($query);
+        $sth->execute($params);
+        $sth->setFetchMode(\PDO::FETCH_CLASS, $class);
+
+        while (!empty($item = $sth->fetch())) {
+            yield $item;
+        }
+    }
+
     public function lastInsertId()
     {
         return $this->dbh->lastInsertId();

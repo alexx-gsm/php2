@@ -33,7 +33,7 @@ abstract class AbstractModel
     public static function findNLastItems(int $count = 1)
     {
 
-        $data = (new Db())->query(
+        $data = (new Db())->queryEach(
             'SELECT * FROM ' . static::$table . ' ORDER BY id DESC LIMIT ' . $count,
             [],
             static::class

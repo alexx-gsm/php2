@@ -15,7 +15,7 @@ class Index
 
     public function actionDefault()
     {
-        $news = Article::findAll();
+        $news = Article::findNLastItems(3);
         if (false === $news) {
             throw new E404Exception('Нет новостей');
         }
