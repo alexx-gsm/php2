@@ -17,7 +17,7 @@ abstract class Controller
     public function action($action, $message = '')
     {
         if (method_exists($this, 'access') && false === $this->access()) {
-            throw new E403Exception('E403: Доступ запрещен');
+            throw new E403Exception('Ошибка 403 - Доступ запрещен');
         }
         $this->$action($message);
     }

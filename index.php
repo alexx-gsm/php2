@@ -5,7 +5,7 @@ use App\Components\E403Exception;
 use App\Components\E404Exception;
 use ME\MultiException;
 use App\Controllers\Error;
-use App\Helpers\Helpers;
+use App\Components\Helpers\Helpers;
 
 require_once __DIR__ . '/autoload.php';
 require_once __DIR__ . '/vendor/autoload.php';

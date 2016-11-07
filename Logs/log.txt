@@ -12,3 +12,14 @@
 2016-11-06 17:45:02; Error: Database connection failed; D:\OpenServer\domains\PHP\PHP2\App\Db.php; 21
 2016-11-06 17:45:50; Error: Database connection failed; D:\OpenServer\domains\PHP\PHP2\App\Db.php; 21
 2016-11-06 17:48:57; Error: Database connection failed; D:\OpenServer\domains\PHP\PHP2\App\Db.php; 21
+2016-11-07 20:01:43; Error: Database connection failed; F:\OpenServer\domains\PHP\PHP-2\App\Db.php; 21
+2016-11-07 20:02:09; Error: Database connection failed; F:\OpenServer\domains\PHP\PHP-2\App\Db.php; 21
+2016-11-07 20:02:09; Error: Database connection failed; F:\OpenServer\domains\PHP\PHP-2\App\Db.php; 21
+2016-11-07 20:06:25; Ошибка 404 - не найдено; F:\OpenServer\domains\PHP\PHP-2\App\Controllers\Index.php; 36
+2016-11-07 20:06:33; Ошибка 404 - не найдено; F:\OpenServer\domains\PHP\PHP-2\App\Controllers\Index.php; 36
+2016-11-07 20:06:37; Ошибка 404 - не найдено; F:\OpenServer\domains\PHP\PHP-2\App\Controllers\Index.php; 36
+2016-11-07 20:06:41; Ошибка 404 - не найдено; F:\OpenServer\domains\PHP\PHP-2\App\Controllers\Index.php; 36
+2016-11-07 20:09:44; Ошибка 404 - не найдено; F:\OpenServer\domains\PHP\PHP-2\App\Controllers\Index.php; 36
+2016-11-07 20:09:48; Ошибка 404 - не найдено; F:\OpenServer\domains\PHP\PHP-2\App\Controllers\Index.php; 36
+2016-11-07 20:20:05; Ошибка 403 - Доступ запрещен; F:\OpenServer\domains\PHP\PHP-2\App\Controllers\Controller.php; 20
+2016-11-07 20:20:41; Ошибка 403 - Доступ запрещен; F:\OpenServer\domains\PHP\PHP-2\App\Controllers\Controller.php; 20

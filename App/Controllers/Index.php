@@ -28,12 +28,12 @@ class Index
     {
         $id = $_GET['id'] ?? null;
         if (null === $id || 0 == (int)$id) {
-            throw new E404Exception('E404: Нет такой новости');
+            throw new E404Exception('Ошибка 404 - не найдено');
         }
 
         $article = Article::findOneById($id);
         if (false === $article) {
-            throw new E404Exception('E404: Нет такой новости');
+            throw new E404Exception('Ошибка 404 - не найдено');
         }
 
         $this->view->article = $article;

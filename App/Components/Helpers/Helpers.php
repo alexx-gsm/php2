@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace App\Components\Helpers;
 
 use App\Components\Logger;
 use App\Config;
@@ -11,16 +11,16 @@ use Swift_Message;
 
 class Helpers
 {
-    public static function logError(Exception $exception)
+    public static function logError(Exception $e)
     {
         Logger::getInstance()
-            ->setConfig(__DIR__ . '/../config.php')
-            ->writeLog($exception);
+            ->setConfig(__DIR__ . '/../../../config.php')
+            ->writeLog($e);
     }
 
     public static function sendEmail(Exception $e)
     {
-        $config = Config::getInstance()->setConfig(__DIR__ . '/../config.php');
+        $config = Config::getInstance()->setConfig(__DIR__ . '/../../../config.php');
         $emailTo = $config->data['mail']['admin'];
         $emailFrom = $config->data['mail']['site'];
 
