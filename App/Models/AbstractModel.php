@@ -127,7 +127,6 @@ abstract class AbstractModel
             } catch (\Exception $e) {
                 $errors->add($e);
             }
-
         }
 
         if (count($errors) > 0) {

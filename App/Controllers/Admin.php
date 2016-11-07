@@ -23,16 +23,29 @@ class Admin
     public function actionDefault()
     {
         $news = Article::findAll();
-        var_dump($news); die;
-        $this->view->news = $news;
-        $this->view->display(__DIR__ . '/../../Templates/Admin/default.php');
+//        $this->view->news = $news;
+//        $this->view->display(__DIR__ . '/../../Templates/Admin/default.php');
 
-//        $adminTable = new AdminDataTable(
-//
-//                Article::findAll(),
-//
-//            []
-//        );
+        if (!empty($news)) {
+            $adminTable = (new AdminDataTable($news, [
+                function(Article $article) {
+                    return $article->id;
+                },
+                function(Article $article) {
+                    return $article->title;
+                },
+                function(Article $article) {
+                    return $article->lead;
+                },
+                function(Article $article) {
+                    return $article->author->name;
+                },
+            ]))->render();
+        }
+
+        $this->view->table = $adminTable ?? [];
+        $this->view->display(__DIR__ . '/../../Templates/Admin/table.php');
+
     }
 
     public function actionEdit()

@@ -28,6 +28,7 @@ class AdminDataTable
             }
             $table[] = $line;
         }
+        return $table;
     }
 
 }
